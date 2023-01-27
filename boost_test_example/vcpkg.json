@@ -1,0 +1,10 @@
+{
+    "name": "boost-test-example",
+    "version": "1.0.0",
+    "dependencies": [
+        "boost-filesystem",
+        "boost-date-time",
+		"boost-test",
+		"boost-log"
+    ]
+}
