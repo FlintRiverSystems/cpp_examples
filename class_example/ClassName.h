@@ -45,6 +45,10 @@ public:
 
 	virtual void Method1() = 0;
 
+	virtual bool Dirty() = 0;
+	virtual void SetDirty() = 0;
+	virtual void ClearDirty() = 0;
+
 	virtual std::string to_string() const = 0;
 
 protected:

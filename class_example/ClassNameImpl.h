@@ -16,13 +16,17 @@ public:
 	static ClassName::ptr Create ();
 	static ClassName::ptr Create (ClassNameImpl::cptr rhs);
 
-	virtual auto Prop1 () const -> int override;
+	virtual auto Prop1() const -> int override { return _prop1; }
 
-	virtual void setProp1 (int val) override;
+	virtual void setProp1(int val) override { _update_prop(_prop1, val); }
 
-	virtual auto Prop2 () const -> int override;
+	virtual auto Prop2() const -> int override { return _prop2; }
 
 	virtual void Method1 () override;
+
+	virtual bool Dirty() override { return _dirty; }
+	virtual void SetDirty() override { _dirty = true; }
+	virtual void ClearDirty() override { _dirty = false; }
 
 	virtual auto to_string() const -> std::string override;
 
@@ -35,6 +39,17 @@ protected:
 
 	int _prop1;
 	int _prop2;
+
+	bool _dirty;
+
+	template<class T, class U>
+	void _update_prop(T& member, const U& new_value)
+	{
+		if (member == new_value) return;
+		member = new_value;
+		_dirty = true;
+		_update();
+	}
 
 protected:
 	class protected_token {}; /* exists to prevent public use of ctor */

@@ -22,6 +22,7 @@ ClassName::ptr ClassNameImpl::Create (ClassNameImpl::cptr rhs)
 
 void ClassNameImpl::_init ()
 {
+	_dirty = false;
 	_prop1 = 0;
 	_update();
 }
@@ -35,22 +36,6 @@ void ClassNameImpl::_copy (ClassNameImpl::cptr rhs)
 void ClassNameImpl::_update ()
 {
 	_prop2 = 2 * _prop1;
-}
-
-auto ClassNameImpl::Prop1 () const -> int
-{
-	return _prop1;
-}
-
-void ClassNameImpl::setProp1 (int val)
-{
-	_prop1 = val;
-	_update();
-}
-
-auto ClassNameImpl::Prop2() const -> int
-{
-	return _prop2;
 }
 
 void ClassNameImpl::Method1 ()
