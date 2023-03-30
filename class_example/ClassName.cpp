@@ -1,17 +1,17 @@
 
-#include "ClassName.h"
+#include "classname.h"
 
-#include "ClassNameImpl.h"
+#include "classname_impl.h"
 
 using namespace Namespace;
 
-auto ClassName::Create() -> ClassName::ptr
+auto classname::create() -> classname::ptr
 {
-	return ClassNameImpl::Create();
+	return classname_impl::create();
 }
 
-auto ClassName::Create (cptr rhs) -> ClassName::ptr
+auto classname::create (cptr rhs) -> classname::ptr
 {
-	auto rhs2 = std::dynamic_pointer_cast<const ClassNameImpl, const ClassName>(rhs);
-	return ClassNameImpl::Create(rhs2);
+	auto rhs2 = std::dynamic_pointer_cast<const classname_impl, const classname>(rhs);
+	return classname_impl::create(rhs2);
 }
