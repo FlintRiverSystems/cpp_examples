@@ -1,7 +1,7 @@
 
 #pragma once
 
-class TestWatcher
+class test_watcher
 {
 private:
 	static bool _logging_initialized;
@@ -10,6 +10,6 @@ private:
 	static std::string _prev_test_name;
 
 public:
-	static void EnterTest();
-	static void ExitTest();
+	static void enter_test();
+	static void exit_test();
 };

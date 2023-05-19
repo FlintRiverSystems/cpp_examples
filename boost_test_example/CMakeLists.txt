@@ -25,7 +25,7 @@ project(boost_test_example)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-add_executable(boost_test_example)
+add_executable(${PROJECT_NAME})
 
 find_package (Boost REQUIRED COMPONENTS filesystem date_time log unit_test_framework)
 target_link_libraries(${PROJECT_NAME} PRIVATE Boost::boost Boost::log Boost::unit_test_framework)

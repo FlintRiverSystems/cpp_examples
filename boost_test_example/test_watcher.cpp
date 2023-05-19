@@ -1,5 +1,5 @@
 
-#include "TestWatcher.h"
+#include "test_watcher.h"
 
 #include "boost_log.h"
 
@@ -10,13 +10,13 @@
 
 void setup_logging();
 
-bool TestWatcher::_logging_initialized = false;
-bool TestWatcher::_test_failed = false;
-std::string TestWatcher::_prev_test_name;
+bool test_watcher::_logging_initialized = false;
+bool test_watcher::_test_failed = false;
+std::string test_watcher::_prev_test_name;
 
 static logger_t lg;
 
-void TestWatcher::EnterTest()
+void test_watcher::enter_test()
 {
 	if (!_logging_initialized)
 	{
@@ -41,7 +41,7 @@ void TestWatcher::EnterTest()
 	_test_failed = true;
 }
 
-void TestWatcher::ExitTest()
+void test_watcher::exit_test()
 {
 	_test_failed = false;
 }

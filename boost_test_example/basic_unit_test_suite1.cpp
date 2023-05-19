@@ -25,11 +25,11 @@ struct print_log_value<vector<int>>
 
 static logger_t lg;
 
-BOOST_AUTO_TEST_SUITE(Suite1);
+BOOST_AUTO_TEST_SUITE(suite1);
 
 BOOST_AUTO_TEST_CASE(test1)
 {
-	TestWatcher::EnterTest();
+	test_watcher::enter_test();
 
 	BOOST_LOG(lg) << "Starting test1";
 	BOOST_LOG(lg) << "UTF-8 character: \xd0\xb6";
@@ -41,16 +41,16 @@ BOOST_AUTO_TEST_CASE(test1)
 
 	BOOST_REQUIRE_EQUAL(a, b); /* must use REQUIRE, which aborts test case */
 
-	TestWatcher::ExitTest();
+	test_watcher::exit_test();
 }
 
 BOOST_AUTO_TEST_CASE(test2) /* never runs */
 {
-	TestWatcher::EnterTest();
+	test_watcher::enter_test();
 
 	BOOST_REQUIRE_EQUAL(1, 1);
 
-	TestWatcher::ExitTest();
+	test_watcher::exit_test();
 }
 
 BOOST_AUTO_TEST_SUITE_END();
