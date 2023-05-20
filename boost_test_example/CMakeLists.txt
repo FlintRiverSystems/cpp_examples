@@ -38,12 +38,12 @@ if (MSVC)
 	target_compile_options(${PROJECT_NAME} PRIVATE /MP)
 endif()
 
-target_precompile_headers(${PROJECT_NAME} PRIVATE pch.h)
-set_source_files_properties(main.cpp PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
+target_precompile_headers(${PROJECT_NAME} PRIVATE src/pch.h)
+set_source_files_properties(src/main.cpp PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
 
 
-file(GLOB SRC_HDR *.h)
-file(GLOB SRC_CPP *.cpp)
+file(GLOB SRC_HDR src/*.h)
+file(GLOB SRC_CPP src/*.cpp)
 
 target_sources(${PROJECT_NAME} PRIVATE ${SRC_HDR} ${SRC_CPP})
 
