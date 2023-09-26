@@ -10,7 +10,7 @@
  * this is used as a better alternative to pimpl - supports multiple implementations
  * of the derived classes (for testing, etc)
  *
- * this class is simply the interface. The derived class, classname_impl, contains all the
+ * this class is simply the interface. The derived class, ClassNameImpl, contains all the
  * necessary data members and details.  This implements a "compiler firewall" which
  * reduces the dependencies (ie headers) that the consumers of this class will see.
  *
@@ -26,13 +26,13 @@ namespace Namespace {
 
 /* this is the interface */
 
-class classname
+class ClassName
 				// don't use enabled_shared_from_this - it complicates inheritance
 {
 public:
-	using ptr		= std::shared_ptr<classname>;
-	using cptr		= std::shared_ptr<const classname>;
-	using wptr		= std::weak_ptr<classname>;
+	using ptr		= std::shared_ptr<ClassName>;
+	using cptr		= std::shared_ptr<const ClassName>;
+	using wptr		= std::weak_ptr<ClassName>;
 	using vector	= std::vector<ptr>;
 
 	static ptr create ();
@@ -52,44 +52,44 @@ public:
 	virtual std::string to_string() const = 0;
 
 protected:
-	classname () = default; /* necessary for derived implementation classes */
+	ClassName () = default; /* necessary for derived implementation classes */
 
 public:
-	virtual ~classname () = default;
+	virtual ~ClassName () = default;
 
 	/* remove copy ctors and assignment */
-	classname (const classname&) = delete;
-	classname (classname&&) = delete;
-	auto operator= (const classname&) -> classname& = delete;	
-	auto operator= (classname&&) -> classname& = delete;	
+	ClassName (const ClassName&) = delete;
+	ClassName (ClassName&&) = delete;
+	auto operator= (const ClassName&) -> ClassName& = delete;	
+	auto operator= (ClassName&&) -> ClassName& = delete;	
 };
 
 
-inline auto to_string (const classname& rhs) -> std::string
+inline auto to_string (const ClassName& rhs) -> std::string
 {
 	return rhs.to_string();
 }
 
-inline auto operator<< (std::ostream& os, const classname& rhs) -> std::ostream&
+inline auto operator<< (std::ostream& os, const ClassName& rhs) -> std::ostream&
 {
 	/* TODO: write object to ostream */
 	return os;
 }
 
-inline auto operator<< (std::ostream& os, const classname::ptr rhs) -> std::ostream&
+inline auto operator<< (std::ostream& os, const ClassName::ptr rhs) -> std::ostream&
 {
 	os << *rhs;
 	return os;
 }
 
 
-inline auto operator>> (std::istream& is, classname& rhs) -> std::istream&
+inline auto operator>> (std::istream& is, ClassName& rhs) -> std::istream&
 {
 	/* TODO: parse object from istream */
 	return is;
 }
 
-inline auto operator>> (std::istream& is, classname::ptr& rhs) -> std::istream&
+inline auto operator>> (std::istream& is, ClassName::ptr& rhs) -> std::istream&
 {
 	/* ptr passed to us is empty, allocate an actual object */
 	//rhs = std::make_shared<ClassNameInterface>();

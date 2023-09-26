@@ -1,20 +1,20 @@
 
 #pragma once
 
-#include "classname.h"
+#include "ClassName.h"
 
 namespace Namespace {
 
-class classname_impl : public classname
+class ClassNameImpl : public ClassName
 {
 public:
-	using ptr		= std::shared_ptr<classname_impl>;
-	using cptr		= std::shared_ptr<const classname_impl>;
-	using wptr		= std::weak_ptr<classname_impl>;
+	using ptr		= std::shared_ptr<ClassNameImpl>;
+	using cptr		= std::shared_ptr<const ClassNameImpl>;
+	using wptr		= std::weak_ptr<ClassNameImpl>;
 	using vector	= std::vector<ptr>;
 
-	static classname::ptr create ();
-	static classname::ptr create (classname_impl::cptr rhs);
+	static ClassName::ptr create ();
+	static ClassName::ptr create (ClassNameImpl::cptr rhs);
 
 	virtual auto prop1() const -> int override { return _prop1; }
 
@@ -34,7 +34,7 @@ protected:
 	wptr _self;
 
 	void _init();
-	void _copy (classname_impl::cptr rhs);
+	void _copy (ClassNameImpl::cptr rhs);
 	void _update();
 
 	int _prop1;
@@ -56,48 +56,48 @@ protected:
 						 	  /* we want the ctor to be public so we can use make_shared in create()
 							   * which reduces heap fragmentation */
 public:
-	classname_impl() = delete;
-	classname_impl(protected_token) {}
-	virtual ~classname_impl () override = default;
+	ClassNameImpl() = delete;
+	ClassNameImpl(protected_token) {}
+	virtual ~ClassNameImpl () override = default;
 
 	/* remove copy ctors and assignment */
-	classname_impl (const classname_impl &) = delete;
-	classname_impl (classname_impl &&) = delete;
-	auto operator= (const classname_impl &) -> classname_impl& = delete;	
-	auto operator= (classname_impl &&) -> classname_impl& = delete;	
+	ClassNameImpl (const ClassNameImpl &) = delete;
+	ClassNameImpl (ClassNameImpl &&) = delete;
+	auto operator= (const ClassNameImpl &) -> ClassNameImpl& = delete;	
+	auto operator= (ClassNameImpl &&) -> ClassNameImpl& = delete;	
 
 };
 
 #if 0
-inline auto to_string (const classname_impl& rhs) -> std::string
+inline auto to_string (const ClassNameImpl& rhs) -> std::string
 {
 	return rhs.to_string();
 }
 
-inline auto operator<< (std::ostream& os, const classname_impl& rhs) -> std::ostream&
+inline auto operator<< (std::ostream& os, const ClassNameImpl& rhs) -> std::ostream&
 {
 	/* TODO: write object to ostream */
 	return os;
 }
 
-inline auto operator<< (std::ostream& os, const classname_impl::ptr rhs) -> std::ostream&
+inline auto operator<< (std::ostream& os, const ClassNameImpl::ptr rhs) -> std::ostream&
 {
 	os << *rhs;
 	return os;
 }
 
 
-inline auto operator>> (std::istream& is, classname_impl& rhs) -> std::istream&
+inline auto operator>> (std::istream& is, ClassNameImpl& rhs) -> std::istream&
 {
 	/* TODO: parse object from istream */
 	return is;
 }
 
-inline auto operator>> (std::istream& is, classname_impl::ptr& rhs) -> std::istream&
+inline auto operator>> (std::istream& is, ClassNameImpl::ptr& rhs) -> std::istream&
 {
 	/* ptr passed to us is empty, allocate an actual object */
-	//rhs = std::make_shared<classname>();
-	//rhs = classname::create();
+	//rhs = std::make_shared<ClassName>();
+	//rhs = ClassName::create();
 
 	is >> *rhs;
 	return is;
