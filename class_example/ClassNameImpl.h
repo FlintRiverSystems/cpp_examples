@@ -57,7 +57,7 @@ protected:
 							   * which reduces heap fragmentation */
 public:
 	ClassNameImpl() = delete;
-	ClassNameImpl(protected_token) {}
+	ClassNameImpl(protected_token) { _init();  }
 	virtual ~ClassNameImpl () override = default;
 
 	/* remove copy ctors and assignment */

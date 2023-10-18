@@ -7,7 +7,6 @@ ClassName::ptr ClassNameImpl::create ()
 {
 	auto p = std::make_shared<ClassNameImpl>(protected_token());
 	p->_self = p;
-	p->_init();
 	return p;
 }
 
@@ -15,7 +14,6 @@ ClassName::ptr ClassNameImpl::create (ClassNameImpl::cptr rhs)
 {
 	auto p = std::make_shared<ClassNameImpl>(protected_token());
 	p->_self = p;
-	p->_init();
 	p->_copy(rhs);
 	return p;
 }
