@@ -35,8 +35,8 @@ add_executable(${PROJECT_NAME})
 find_package (fmt CONFIG REQUIRED)
 target_link_libraries(${PROJECT_NAME} PRIVATE fmt::fmt)
 
-#find_package (Boost REQUIRED COMPONENTS filesystem date_time)
-#target_link_libraries(${PROJECT_NAME} PRIVATE Boost::boost)
+find_package (Boost REQUIRED COMPONENTS locale)
+target_link_libraries(${PROJECT_NAME} PRIVATE Boost::locale)
 
 if (MSVC)
 	set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${PROJECT_NAME})
