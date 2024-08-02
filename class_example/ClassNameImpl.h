@@ -49,10 +49,9 @@ protected:
 		_update();
 	}
 
-protected:
-	class protected_token {}; /* exists to prevent public use of ctor */
-						 	  /* we want the ctor to be public so we can use make_shared in create()
-							   * which allows enabled_shared_from_this() and reduces heap fragmentation */
+protected: class protected_token {}; /* exists to prevent public use of ctor */
+						 		     /* we want the ctor to be public so we can use make_shared in create()
+							          * which allows enabled_shared_from_this() and reduces heap fragmentation */
 public:
 	ClassNameImpl() = delete;
 	ClassNameImpl(protected_token) { _init();  }
