@@ -1,0 +1,9 @@
+{
+    "name": "boost-signals2-example",
+    "version": "1.0.0",
+    "dependencies": [
+        "boost-filesystem",
+        "boost-date-time",
+		"boost-signals2"
+    ]
+}
