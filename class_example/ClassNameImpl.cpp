@@ -6,14 +6,12 @@ using namespace Namespace;
 ClassName::ptr ClassNameImpl::create () 
 {
 	auto p = std::make_shared<ClassNameImpl>(protected_token());
-	p->_self = p;
 	return p;
 }
 
 ClassName::ptr ClassNameImpl::create (ClassNameImpl::cptr rhs) 
 {
 	auto p = std::make_shared<ClassNameImpl>(protected_token());
-	p->_self = p;
 	p->_copy(rhs);
 	return p;
 }

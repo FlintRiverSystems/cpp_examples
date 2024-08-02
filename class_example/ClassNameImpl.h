@@ -5,7 +5,7 @@
 
 namespace Namespace {
 
-class ClassNameImpl : public ClassName
+class ClassNameImpl : public ClassName, public std::enable_shared_from_this<ClassNameImpl>
 {
 public:
 	using ptr		= std::shared_ptr<ClassNameImpl>;
@@ -31,8 +31,6 @@ public:
 	virtual auto to_string() const -> std::string override;
 
 protected:
-	wptr _self;
-
 	void _init();
 	void _copy (ClassNameImpl::cptr rhs);
 	void _update();
@@ -54,7 +52,7 @@ protected:
 protected:
 	class protected_token {}; /* exists to prevent public use of ctor */
 						 	  /* we want the ctor to be public so we can use make_shared in create()
-							   * which reduces heap fragmentation */
+							   * which allows enabled_shared_from_this() and reduces heap fragmentation */
 public:
 	ClassNameImpl() = delete;
 	ClassNameImpl(protected_token) { _init();  }
